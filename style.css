@@ -1,0 +1,271 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  /* font-weight: 600; */
+  padding: 0;
+  margin: 0;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+main {
+  display: flex;
+  height: 100%;
+}
+
+.navigator{
+  /* display: none; */
+  display: flex;
+  background: dodgerblue;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  min-width: 100vw;
+  min-height: 3rem;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.navigator>div.active{
+  transform: scale(1.5);
+  color: cyan;
+}
+
+main > * {
+  flex-grow: 1;
+}
+
+input[type="month"] {
+  text-transform: uppercase;
+}
+
+.calendar {
+  min-width: 200px;
+  max-width: 350px;
+
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  user-select: none;
+}
+
+.calendar .dates {
+  margin: 20px 0;
+}
+
+.calendar .row,
+.calendar .weekdays {
+  display: flex;
+  justify-content: space-around;
+}
+
+.calendar .weekdays {
+  margin-top: 10px;
+}
+
+.calendar .day {
+  width: calc(100% / 7);
+  position: relative;
+  background: none;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.calendar .day.event::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  bottom: 0;
+  width: 5px;
+  height: 5px;
+  background: black;
+  border-radius: 50%;
+  transform: translateY(calc(100% + 2px));
+}
+
+.calendar .day.active {
+  background: darkblue;
+  color: white;
+  font-weight: bold;
+}
+.calendar .day:hover {
+  background: #555;
+  color: white;
+}
+.calendar .day.active:hover {
+  background: dodgerblue;
+  color: white;
+}
+
+.calendar .day.today {
+  font-weight: bold;
+  color:dodgerblue;
+}
+
+.calendar .day.prev,
+.calendar .day.next {
+  color: darkgray;
+}
+
+.calendar .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 5px;
+}
+
+.navigate-dates {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dropped {
+  display: none;
+}
+
+.add-event-section {
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+}
+
+.add-event-section #add-topic {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.events {
+  height: 100%;
+  min-width: 50vw;
+}
+
+.events .header {
+  display: flex;
+  flex-direction: column;
+}
+
+.events .no-event:not(.dropped) {
+  display: flex;
+  justify-content: center;
+  padding: 3rem;
+  font-size: 1.2em;
+}
+
+.events .current-date {
+  display: flex;
+  padding: 0;
+  align-items: center;
+  justify-content: flex-start;
+}
+.events .current-date > * {
+  display: flex;
+  text-transform: capitalize;
+  padding: 0.5rem;
+}
+
+.events .current-day {
+  font-size: 2em;
+}
+
+.events-list {
+  width:100%;
+}
+
+.events-list > *:nth-child(odd) {
+  background: lightblue;
+}
+.events-list > * {
+  width: 50vw;
+  padding: 1rem;
+  font-size: 1.2em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.events-list > *:hover {
+  background: darkblue;
+  color: white;
+}
+
+.add-topic-form {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 0;
+  overflow-y: hidden;
+  transition: height 0.9s ease-in-out;
+  border-radius: 0.5rem;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-topic-form.active {
+    border-top: 2px solid black;
+  height: 10rem;
+}
+.add-topic-form > * {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.add-topic-form .header {
+  display: inline-block;
+  font-size: 1.2em;
+}
+
+.add-topic-form .content > button {
+  margin: 1rem 0;
+}
+
+@media (max-width: 630px){
+  main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .calendar{
+    border-bottom: 3px dashed black;
+    padding: 1rem 0;
+    width: 100vw;
+  }
+
+  .events{
+    padding:2rem 0 4rem;
+  }
+
+  .tab{
+    visibility: hidden;
+    
+    justify-content: center;
+  }
+  .tab.active{
+    visibility: visible;
+  }
+
+  .add-event-section{
+    visibility: hidden;
+  }
+  .add-topic-form{
+    display: none;
+  }
+  .add-topic-form.active{
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+}
+
